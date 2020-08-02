@@ -1,23 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import {Message} from '../../features/home/components/messenger/message';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError, pipe} from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
-
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AwsSDKServiceService {
+export class PasswordServiceService {
 
   constructor( private http: HttpClient) {}
 
 
 
-  sendMessage(message: Message): Observable<any> {
+  sendMessage(passwordInput: string): Observable<any> {
 
-    const apiUrl = '/api/start';
-    if ( message.phoneNumber || message.utterance) {
+    const apiUrl = '/passwordcheck';
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
@@ -26,18 +24,31 @@ export class AwsSDKServiceService {
     };
 
     const body = JSON.stringify({
-      input : {
-        message: message.utterance,
-        phoneNumber: message.phoneNumber,
-      }
+      password : passwordInput,
     });
 
 
-    console.log(apiUrl);
-    console.log(httpOptions);
 
-    return this.http.post<any>(apiUrl, body, httpOptions);
+    return this.http.post<any>(apiUrl, body, httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    );
   }
+
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    // Return an observable with a user-facing error message.
+    return throwError(
+      'Something bad happened; please try again later.');
   }
 
 }

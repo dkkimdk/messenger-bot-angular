@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AwsSDKServiceService } from './services/aws-sdkservice.service';
 import { HttpClientModule } from '@angular/common/http';
-
+import { PasswordServiceService} from './services/password-service.service';
 
 
 @NgModule({
@@ -12,7 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   providers: [
-    AwsSDKServiceService
+    AwsSDKServiceService,
+    PasswordServiceService
   ]
 })
 export class SharedModule { }

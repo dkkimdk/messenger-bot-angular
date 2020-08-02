@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {PasswordServiceService} from './../../shared/services/password-service.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,13 +9,18 @@ export class HomeComponent implements OnInit {
 
   passwordValidated = false;
 
-  constructor() { }
+  constructor(private passwordService: PasswordServiceService) { }
 
   ngOnInit(): void {
   }
 
   checkPassword(password: string): void {
     console.log(password);
-    this.passwordValidated = true;
+    this.passwordService.sendMessage(password).subscribe(
+      res => {
+        console.log(res);
+        this.passwordValidated = true;
+      }
+    );
   }
 }
