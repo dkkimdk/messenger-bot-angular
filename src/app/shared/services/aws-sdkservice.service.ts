@@ -16,7 +16,7 @@ export class AwsSDKServiceService {
 
   sendMessage(message: Message): Observable<any> {
 
-    const apiUrl = 'http://localhost:4000/api/start';
+    const apiUrl = 'http://localhost:8080/api/start';
     if ( message.phoneNumber || message.utterance) {
     const httpOptions = {
       headers: new HttpHeaders({

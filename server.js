@@ -1,5 +1,6 @@
 var express = require("express");
 var AWS = require('aws-sdk');
+const path = require('path');
 
 
 const app = express();
@@ -14,7 +15,7 @@ app.use(function(__, res, next) {
 });
 
 
-var distDir = __dirname + "/dist/";
+var distDir = __dirname + "/dist/messenger-bot";
 app.use(express.static(distDir));
 
 const startExecution = async (
@@ -37,6 +38,10 @@ const startExecution = async (
     }
   };
 
+app.get('/*', function(req,res) {
+    
+    res.sendFile(distDir + '/index.html')
+});
 
 app.use('/api/start', async function(req,res){
     if (!req.body.input.message || !req.body.input.phoneNumber){
