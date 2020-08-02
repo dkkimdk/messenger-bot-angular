@@ -33,6 +33,7 @@ export class MessengerComponent implements OnInit {
     this.awSDKService.sendMessage(this.currentMessage).subscribe(
       res => {
         this.botMessages.push(this.currentMessage);
+        this.botMessages.push(new Message('Thanks! I got your request, I will text you in time!', new Date(), false));
         console.log(res);
       },
       error => {
