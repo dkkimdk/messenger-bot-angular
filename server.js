@@ -34,7 +34,6 @@ const startExecution = async (
         const { executionArn } = await stepFunctions.startExecution(opts).promise();    
         return executionArn;
     } catch(error) {
-        console.log(error);
         return error;
     }
   };
@@ -46,7 +45,6 @@ app.get('/*', function(req,res) {
 
 app.use('/passwordcheck', function(req,res) {
     if(req.body.password == process.env.PASSWORD) {
-        console.log('here')
         return res.status(200).json("success");
     } else {
         return res.status(400).json("error");

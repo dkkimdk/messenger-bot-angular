@@ -32,10 +32,6 @@ export class AwsSDKServiceService {
       }
     });
 
-
-    console.log(apiUrl);
-    console.log(httpOptions);
-
     return this.http.post<any>(apiUrl, body, httpOptions);
   }
   }

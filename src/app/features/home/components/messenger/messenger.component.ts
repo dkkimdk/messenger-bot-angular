@@ -29,12 +29,10 @@ export class MessengerComponent implements OnInit {
   sendMessage(): void{
     this.currentMessage.date = new Date();
     // To Do: get rid of hard coded environmenet specific configs
-    console.log(this.currentMessage);
     this.awSDKService.sendMessage(this.currentMessage).subscribe(
       res => {
         this.botMessages.push(this.currentMessage);
         this.botMessages.push(new Message('Thanks! I got your request, I will text you in time!', new Date(), false));
-        console.log(res);
       },
       error => {
         this.showError();

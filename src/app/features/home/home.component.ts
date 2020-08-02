@@ -15,10 +15,8 @@ export class HomeComponent implements OnInit {
   }
 
   checkPassword(password: string): void {
-    console.log(password);
     this.passwordService.sendMessage(password).subscribe(
       res => {
-        console.log(res);
         this.passwordValidated = true;
       }
     );
