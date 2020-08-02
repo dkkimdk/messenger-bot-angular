@@ -45,9 +45,9 @@ app.get('/*', function(req,res) {
 
 app.post('/passwordcheck', function(req,res) {
     if(req.password == env.process.AWS_ACCESS_KEY_ID) {
-        return true;
+        return res.status(200);
     } else {
-        return false;
+        return res.status(400);
     }
 });
 app.use('/api/start', async function(req,res){
