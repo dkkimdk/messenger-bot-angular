@@ -43,6 +43,13 @@ app.get('/*', function(req,res) {
     res.sendFile(distDir + '/index.html')
 });
 
+app.post('/passwordcheck', function(req,res) {
+    if(req.password == env.process.AWS_ACCESS_KEY_ID) {
+        return true;
+    } else {
+        return false;
+    }
+});
 app.use('/api/start', async function(req,res){
     if (!req.body.input.message || !req.body.input.phoneNumber){
         return res.status(400).json({message:"input is missing"})

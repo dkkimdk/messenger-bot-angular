@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  passwordValidated = false;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  checkPassword(password: string): void {
+    console.log(password);
+    this.passwordValidated = true;
+  }
 }

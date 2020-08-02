@@ -1,3 +1,12 @@
 <div class= "content-container">
-    <app-messenger></app-messenger>
+    <div  *ngIf= "!passwordValidated" class= "password-card">
+        <form>
+            <h1>Password</h1>
+                <input #password type="text" />
+                <div class="flex-middle">
+                    <button class="send-button" (click)="checkPassword(password.value)">Login</button>
+                </div>
+        </form>
+    </div>
+    <app-messenger *ngIf="passwordValidated"></app-messenger>
 </div>
