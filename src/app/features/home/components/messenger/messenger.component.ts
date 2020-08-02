@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Message } from './message';
 import {AwsSDKServiceService} from './../../../../shared/services/aws-sdkservice.service';
 import { throwError } from 'rxjs';
+
 @Component({
   selector: 'app-messenger',
   templateUrl: './messenger.component.html',
@@ -28,6 +29,12 @@ export class MessengerComponent implements OnInit {
 
   sendMessage(): void{
     this.currentMessage.date = new Date();
+    if ( this.currentMessage.phoneNumber.length !== 11 || this.currentMessage.phoneNumber.charAt(0) !== '1' ) {
+      this.botMessages.push(
+        new Message(
+          'You put in an invalid phone number. There needs to be a country code, followed by your number (i.e 18189399028)',
+           new Date(), false));
+    } else {
     // To Do: get rid of hard coded environmenet specific configs
     this.awSDKService.sendMessage(this.currentMessage).subscribe(
       res => {
@@ -39,6 +46,7 @@ export class MessengerComponent implements OnInit {
         throwError(error);
       }
      );
+    }
   }
 
   showError(): void {
