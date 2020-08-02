@@ -1,5 +1,13 @@
 <div class= "header" >
-    <div class = "navList">
+    <div class = "title">
+        <a class= "mainLogo" routerLink= '/' routerLinkActive>
         {{this.title}}
+        </a>
     </div>
+    <ul class='navList'>
+        <li *ngFor="let nav of navList" class= 'link'>
+            <a routerLink= '/about' routerLinkActive="active"> {{nav}}</a>
+        </li>   
+    </ul>
+    
 </div>

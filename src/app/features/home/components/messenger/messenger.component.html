@@ -1,0 +1,25 @@
+<section class="module">
+        <header class="top-bar">
+            <h1>Messenger</h1>
+        </header>
+        <ol class="conversation">
+            <li *ngFor="let message of botMessages" [ngClass]="message.userInitiated ? 'self' : 'other'">
+                <div class="message" >
+                <p>{{ message.utterance}}
+                </p>
+                <time dateTime="{{message.date}}">Messenger Bot • {{dateToTimestampString(message.date)}}</time>
+                </div>
+            </li>
+        </ol>
+        <div class= "input-bar"> 
+            <form>
+                <label>Phone Number</label>
+                <input type="text" class="phoneNumber" [(ngModel)]="currentMessage.phoneNumber" name= "phoneNumber"/>
+                <label>Text me in X hours</label>
+                <input type="text"  placeholder="This function does not work currently - Message will be sent instantly" class="time"/>
+                <label>Message</label>
+                <textarea class= "messageInput" [(ngModel)]="currentMessage.utterance" name= "message"></textarea>
+                <button (click)= "sendMessage()"> Send</button>
+            </form>
+        </div>
+    </section>
