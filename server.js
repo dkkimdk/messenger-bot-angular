@@ -1,6 +1,7 @@
 var express = require("express");
 var AWS = require('aws-sdk');
 const path = require('path');
+require('dotenv').config();
 
 
 const app = express();
@@ -43,11 +44,12 @@ app.get('/*', function(req,res) {
     res.sendFile(distDir + '/index.html')
 });
 
-app.post('/passwordcheck', function(req,res) {
-    if(req.password == env.process.AWS_ACCESS_KEY_ID) {
-        return res.status(200);
+app.use('/passwordcheck', function(req,res) {
+    if(req.body.password == process.env.PASSWORD) {
+        console.log('here')
+        return res.status(200).json("success");
     } else {
-        return res.status(400);
+        return res.status(400).json("error");
     }
 });
 app.use('/api/start', async function(req,res){
