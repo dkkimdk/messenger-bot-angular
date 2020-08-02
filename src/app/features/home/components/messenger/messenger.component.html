@@ -19,7 +19,9 @@
                 <input type="text"  placeholder="This function does not work currently - Message will be sent instantly" class="time"/>
                 <label>Message</label>
                 <textarea class= "messageInput" [(ngModel)]="currentMessage.utterance" name= "message"></textarea>
-                <button (click)= "sendMessage()"> Send</button>
+                <div class="flex-right">
+                <button (click)= "sendMessage()" class="sendButton">Send</button>
+                </div>
             </form>
         </div>
     </section>

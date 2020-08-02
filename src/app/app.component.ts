@@ -7,5 +7,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Remind Bot';
-  navList = ['About', 'Github', 'Linkedin'];
+  navList: Nav[] = [
+    {displayName: 'About', internal: true},
+    {displayName: 'Github', internal: false, link: 'https://github.com/dkkimdk'},
+    {displayName: 'Linkedin', internal: false, link: 'https://www.linkedin.com/in/david-kim-b21156108/'}
+];
+}
+
+
+class Nav {
+  displayName: string;
+  internal: boolean;
+  link?: string;
 }

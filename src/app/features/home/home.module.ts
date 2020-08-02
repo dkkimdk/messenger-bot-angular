@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MessengerComponent } from './components/messenger/messenger.component';
 import { HomeComponent} from './home.component';
 import { FormsModule } from '@angular/forms';
-import {SharedModule} from './../../shared/shared.module'
+import {SharedModule} from './../../shared/shared.module';
 
 
 
