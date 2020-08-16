@@ -22,9 +22,14 @@ app.use(express.static(distDir));
 const startExecution = async (
     region,
     stateMachineArn,
-    input,
+    requestBody,
+    dateTime,
   ) => {
-    input = JSON.stringify(input);
+    const payload = {
+        input :requestBody,
+        time: new Date(dateTime).toISOString()
+    }
+    input = JSON.stringify(payload);
     const stepFunctions = new AWS.StepFunctions({ region });
     const opts = {
       stateMachineArn,
@@ -55,7 +60,7 @@ app.use('/api/start', async function(req,res){
         return res.status(400).json({message:"input is missing"})
     }
 
-    const executions = await startExecution('us-east-1','arn:aws:states:us-east-1:441927962368:stateMachine:sampleMessenger', req.body.input,req.body.executionName)
+    const executions = await startExecution('us-east-1','arn:aws:states:us-east-1:441927962368:stateMachine:sampleMessenger-1', req.body.input,req.body.time)
     if (executions.statusCode === 400) {
         return res.status(400).json({message:executions});
     } else {

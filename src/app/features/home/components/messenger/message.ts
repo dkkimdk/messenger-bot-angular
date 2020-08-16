@@ -3,11 +3,8 @@ export class Message {
         public utterance: string,
         public date: Date,
         public userInitiated: boolean,
+        public timeToDelay?: string,
         public id?: number,
-        public timeToDelay?: {
-            minOrHour: boolean;
-            time: number;
-        },
         public phoneNumber?: string
     ){}
 }

@@ -12,7 +12,7 @@ export class MessengerComponent implements OnInit {
 
   constructor(private awSDKService: AwsSDKServiceService) { }
   botMessages: Message[] = [];
-  currentMessage: Message = new Message('', new Date(), true);
+  currentMessage: Message = new Message('', new Date(), true, '0');
 
   ngOnInit(): void {
     const instructionalMessage = 'You can remind yourself with a message in X hours';

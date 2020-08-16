@@ -26,14 +26,22 @@ export class AwsSDKServiceService {
     };
 
     const body = JSON.stringify({
+      time: this.computeDelayedTimestamp(message.timeToDelay),
       input : {
         message: message.utterance,
         phoneNumber: message.phoneNumber,
       }
     });
-
     return this.http.post<any>(apiUrl, body, httpOptions);
   }
   }
+
+  computeDelayedTimestamp(delay: string): Date {
+    const delayObject = parseInt(delay);
+    const currentDateObject = new Date();
+    currentDateObject.setMinutes( currentDateObject.getMinutes() + delayObject);
+    return currentDateObject;
+  }
+
 
 }
