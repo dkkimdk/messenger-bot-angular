@@ -24,7 +24,7 @@ export class MessengerComponent implements OnInit {
 
   }
 
-  dateToHourMin(date:Date): string {
+  dateToHourMin(date: Date): string {
     let hour;
     let mins;
     let amPm;
@@ -40,7 +40,7 @@ export class MessengerComponent implements OnInit {
       amPm = 'pm';
     }
     mins = date.getMinutes();
-    return '' + hour + ':' +  mins +' ' + amPm;
+    return '' + hour + ':' +  mins + ' ' + amPm;
 
   }
 

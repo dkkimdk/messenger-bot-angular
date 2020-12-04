@@ -1,6 +1,6 @@
 .module {
     width: 450px;
-    height: 750px;
+    max-height: 670px;
     margin: 0px auto;
     border-radius: 10px;
     box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.12), 
@@ -13,7 +13,6 @@
     flex-direction:column;
     background-color:black;
     box-sizing:border-box;
-    overflow:scroll;
   }
 
 @media screen and (max-width: 600px) {
@@ -189,7 +188,6 @@ input[type=text] {
     font-size: 1rem;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;   
-    height:100%;
     position:relative;
     color:#D4D4D2;
     
@@ -203,7 +201,7 @@ input[type=text] {
 
   .messageInput {
     border-radius:5px;
-    min-height: 150px;
+    max-height: 150px;
     width: 100%;
     box-sizing: border-box;
     margin: 8px 0;
@@ -226,6 +224,7 @@ input[type=text] {
   border: 2.5px solid #25282A;
   background: black;
   color:white;
+  max-height: 32px;
 }
 
 .sendButton {
