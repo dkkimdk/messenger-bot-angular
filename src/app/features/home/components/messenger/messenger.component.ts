@@ -13,12 +13,34 @@ export class MessengerComponent implements OnInit {
   constructor(private awSDKService: AwsSDKServiceService) { }
   botMessages: Message[] = [];
   currentMessage: Message = new Message('', new Date(), true, '0');
+  currentTime: string;
 
   ngOnInit(): void {
+    this.currentTime = this.dateToHourMin(new Date());
     const instructionalMessage = 'You can remind yourself with a message in X hours';
     this.botMessages.push(new Message(instructionalMessage, new Date(), false));
     const welcomeMessage = 'I want the following message sent to me';
     this.botMessages.push(new Message(welcomeMessage, new Date(), true));
+
+  }
+
+  dateToHourMin(date:Date): string {
+    let hour;
+    let mins;
+    let amPm;
+
+    if (date.getHours() === 0){
+      hour = 12;
+      amPm = 'am';
+    } else if (date.getHours() < 12) {
+      hour = date.getHours();
+      amPm = 'am';
+    } else {
+      hour = date.getHours();
+      amPm = 'pm';
+    }
+    mins = date.getMinutes();
+    return '' + hour + ':' +  mins +' ' + amPm;
 
   }
 
