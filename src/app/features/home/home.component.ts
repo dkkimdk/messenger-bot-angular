@@ -7,7 +7,7 @@ import {PasswordServiceService} from './../../shared/services/password-service.s
 })
 export class HomeComponent implements OnInit {
 
-  passwordValidated = false;
+  passwordValidated = true;
 
   constructor(private passwordService: PasswordServiceService) { }
 
