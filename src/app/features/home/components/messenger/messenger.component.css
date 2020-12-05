@@ -127,10 +127,13 @@ background: #1C1C1C;
     background:black;  
     margin: 0;
     padding: 0;
-    overflow:scroll;
+    overflow-y:scroll;
     min-height:260px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px; 
+  }
+  .conversation::-webkit-scrollbar{
+    display:none;
   }
 
   
@@ -213,8 +216,12 @@ input[type=text] {
     resize: none;
     overflow-y: scroll;
     box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.12)
+   
 }
 
+  .messageInput::-webkit-scrollbar{
+    display:none;
+  }
 textarea:focus {
   border-radius:5px;
 }
